@@ -1,0 +1,12 @@
+# This file contains the properities level configuration for the models in the bronze layer. This file is optional, but it is a good place to centralize configuration for all models in this layer. For example, if we wanted to materialize all models in this layer as views, we could set that here instead of in each individual model file (known as block level configuration).
+VERSION: 2
+
+models:
+  # Model name must match the filename of a model -- including case sensitivity
+  - name: bronze_sales
+    config:
+      materialized: view
+
+  - name: bronze_customer
+    config:
+      materialized: view
