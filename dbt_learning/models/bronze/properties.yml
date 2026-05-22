@@ -10,3 +10,31 @@ models:
   - name: bronze_customer
     config:
       materialized: view
+
+# About dbt tests:
+# dbt tests are used to ensure data quality and integrity in your data models. They allow you to define and enforce rules for your data, such as:
+# - Checking for null values in critical columns (`not_null` test).
+# - Ensuring uniqueness of values in a column (`unique` test).
+# - Validating that column values fall within an expected set (`accepted_values` test).
+# - Custom tests for more complex data validation logic.
+# These tests help identify data issues early and ensure that your data pipelines produce reliable and accurate results.
+
+  - name: bronze_store
+    config:
+      materialized: table
+    columns:
+      - name: store_sk
+        description: "The unique identifier for each store."
+        data_tests:
+          - not_null
+          - unique
+      - name: store_name
+        description: "The name of the store."
+        data_tests:
+          - accepted_values:
+              values: ["MegaMart Manhattan", "MegaMart Brooklyn", "MegaMart Austin", "MegaMart San Jose", "MegaMart Toronto"]
+      - name: country
+        description: "The location of the store."
+        data_tests:
+          - not_null
+          
