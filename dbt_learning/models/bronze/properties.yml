@@ -5,7 +5,17 @@ models:
   # Model name must match the filename of a model -- including case sensitivity
   - name: bronze_sales
     config:
-      materialized: view
+      materialized: table
+    
+    columns:
+      - name: sales_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: gross_amount
+        data_tests:
+          - generic_non_negative
 
   - name: bronze_customer
     config:
