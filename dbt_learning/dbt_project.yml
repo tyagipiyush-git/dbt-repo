@@ -41,3 +41,10 @@ models:
     gold:
       +materialized: view
       schema: gold
+
+seeds:
+  dbt_learning:
+    - name: lookup_test
+      schema: bronze
+      config:
+        materialized: table
