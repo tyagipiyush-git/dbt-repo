@@ -70,6 +70,7 @@ Analyses **do not** appear in `dbt run`’s build list. They can still **depend 
 | File | Purpose |
 |------|---------|
 | `lookup_analysis.sql` | Example: query the `lookup_test` seed with a simple filter |
+| `jinja-1.sql`, `jinja-2.sql`, `Jinja-3.sql` | Jinja practice (variables → loops → dynamic SQL) — see **[README-jinja.md](README-jinja.md)** |
 
 ### Example: `lookup_analysis.sql`
 

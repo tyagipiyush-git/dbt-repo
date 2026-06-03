@@ -10,9 +10,9 @@ Concept documentation lives **next to the code** — one README per folder. **CL
 | `seeds/` | CSV reference data loaded with `dbt seed` | [seeds/README.md](seeds/README.md) |
 | `tests/` | Data quality tests (generic, singular, macros) | [tests/README.md](tests/README.md) |
 | `models/` | SQL transformations (`dbt run`) | *coming soon* |
-| `macros/` | Reusable Jinja/SQL | *coming soon* |
+| `macros/` | Reusable Jinja, schema override, generic tests | [macros/README.md](macros/README.md) |
 | `snapshots/` | Slowly changing dimensions | *coming soon* |
-| `analyses/` | Compiled exploratory SQL (not materialized) | [analyses/README.md](analyses/README.md) |
+| `analyses/` | Compiled exploratory SQL (not materialized) | [analyses/README.md](analyses/README.md) · [Jinja guide](analyses/README-jinja.md) |
 
 ---
 
