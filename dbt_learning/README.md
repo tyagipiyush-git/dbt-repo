@@ -9,10 +9,22 @@ Concept documentation lives **next to the code** — one README per folder. **CL
 | `commands/` | CLI: run one file, one test, selectors | [commands/README.md](commands/README.md) |
 | `seeds/` | CSV reference data loaded with `dbt seed` | [seeds/README.md](seeds/README.md) |
 | `tests/` | Data quality tests (generic, singular, macros) | [tests/README.md](tests/README.md) |
-| `models/` | SQL transformations (`dbt run`) | *coming soon* |
+| `models/bronze/` | Staging tables from sources | [models/bronze/README.md](models/bronze/README.md) |
+| `models/silver/` | Cleansed views | [models/silver/README.md](models/silver/README.md) |
+| `models/gold/` | Business aggregates | *coming soon* |
 | `macros/` | Reusable Jinja, schema override, generic tests | [macros/README.md](macros/README.md) |
 | `snapshots/` | Slowly changing dimensions | *coming soon* |
 | `analyses/` | Compiled exploratory SQL (not materialized) | [analyses/README.md](analyses/README.md) · [Jinja guide](analyses/README-jinja.md) |
+
+---
+
+## Medallion layers
+
+| Layer | Schema | Run |
+|-------|--------|-----|
+| Bronze | `bronze` | `dbt run --select bronze` |
+| Silver | `silver` | `dbt run --select +silver` |
+| Gold | `gold` | *planned* |
 
 ---
 
@@ -42,7 +54,11 @@ dbt build
 dbt_learning/
 ├── commands/       # CLI reference (single file, single test, selectors)
 ├── seeds/          # CSV → warehouse tables (dbt seed)
-├── models/         # bronze / silver / gold SQL
+├── models/
+│   ├── bronze/     # staging — README in folder
+│   ├── silver/     # cleansed views
+│   ├── gold/       # (planned)
+│   └── source/     # source.yml
 ├── tests/          # singular & project-specific tests
 ├── macros/         # shared Jinja macros
 ├── snapshots/      # SCD-style captures
