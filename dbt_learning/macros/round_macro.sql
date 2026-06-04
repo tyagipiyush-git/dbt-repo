@@ -2,7 +2,7 @@
 
 {%- macro round_column(column_name, decimal_places) -%}
     {%- if decimal_places is none -%}
-        {{ decimal_places }} = {{ default_decimal_places }}
+        {%- set decimal_places = default_decimal_places -%}
     {%- endif -%}
     round({{ column_name }}, {{ decimal_places }})
 {%- endmacro -%}
