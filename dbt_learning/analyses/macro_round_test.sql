@@ -1,4 +1,4 @@
 
 select
-    {{ round_column('gross_amount', 2) }} as gross_rounded
+    {{ round_column('gross_amount') }} as gross_rounded
 from {{ ref('bronze_sales') }}
