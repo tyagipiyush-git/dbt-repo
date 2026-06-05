@@ -1,0 +1,29 @@
+snapshots:
+  - name: silver_customer_snapshot
+    description: >
+      SCD Type 2 history for the customer dimension.
+      Tracks changes to email, name, gender, and email validity after silver cleansing.
+    relation: ref('silver_customer')
+    config:
+      schema: snapshots
+      unique_key: customer_sk
+      strategy: check
+      dbt_valid_to_current: "to_date('9999-12-31')"
+      check_cols:
+        - email
+        - customer_name
+        - gender
+        - has_valid_email
+    columns:
+      - name: customer_sk
+        description: Stable business key for each customer.
+        data_tests:
+          - not_null
+      - name: email
+        description: Cleansed email from silver_customer.
+      - name: customer_name
+        description: Full name (first + last) from silver_customer.
+      - name: gender
+        description: Standardized gender label.
+      - name: has_valid_email
+        description: True when email is present and non-empty.

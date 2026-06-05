@@ -13,7 +13,7 @@ Concept documentation lives **next to the code** — one README per folder. **CL
 | `models/silver/` | Cleansed views | [models/silver/README.md](models/silver/README.md) |
 | `models/gold/` | Business aggregates | *coming soon* |
 | `macros/` | Reusable Jinja, schema override, generic tests | [macros/README.md](macros/README.md) |
-| `snapshots/` | Slowly changing dimensions | *coming soon* |
+| `snapshots/` | Slowly changing dimensions (SCD Type 2) | [snapshots/README.md](snapshots/README.md) |
 | `analyses/` | Compiled exploratory SQL (not materialized) | [analyses/README.md](analyses/README.md) · [Jinja guide](analyses/README-jinja.md) |
 
 ---

@@ -1,0 +1,14 @@
+# Copy to profiles.yml (same folder) or ~/.dbt/profiles.yml
+# Never commit real tokens — profiles.yml is gitignored.
+
+dbt_learning:
+  target: dev
+  outputs:
+    dev:
+      type: databricks
+      catalog: your_catalog          # e.g. dbt_learning_dev
+      schema: source                 # default schema for models without custom schema
+      host: your-workspace.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/your_warehouse_id
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+      threads: 4
