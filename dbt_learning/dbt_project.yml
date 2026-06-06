@@ -36,11 +36,14 @@ models:
       +materialized: table
       schema: bronze
     silver:
-      +materialized: view
+      +materialized: table
       schema: silver
     gold:
-      +materialized: view
+      +materialized: table
       schema: gold
+    snapshots:
+      +materialized: table
+      schema: snapshots
 
 seeds:
   dbt_learning:
