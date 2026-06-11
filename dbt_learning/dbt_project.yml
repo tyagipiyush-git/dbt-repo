@@ -41,9 +41,6 @@ models:
     gold:
       +materialized: table
       schema: gold
-    snapshots:
-      +materialized: table
-      schema: snapshots
 
 seeds:
   dbt_learning:

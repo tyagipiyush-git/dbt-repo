@@ -11,7 +11,7 @@ Concept documentation lives **next to the code** — one README per folder. **CL
 | `tests/` | Data quality tests (generic, singular, macros) | [tests/README.md](tests/README.md) |
 | `models/bronze/` | Staging tables from sources | [models/bronze/README.md](models/bronze/README.md) |
 | `models/silver/` | Cleansed views | [models/silver/README.md](models/silver/README.md) |
-| `models/gold/` | Business aggregates | *coming soon* |
+| `models/gold/` | Business KPIs and aggregates | [models/gold/README.md](models/gold/README.md) |
 | `macros/` | Reusable Jinja, schema override, generic tests | [macros/README.md](macros/README.md) |
 | `snapshots/` | Slowly changing dimensions (SCD Type 2) | [snapshots/README.md](snapshots/README.md) |
 | `analyses/` | Compiled exploratory SQL (not materialized) | [analyses/README.md](analyses/README.md) · [Jinja guide](analyses/README-jinja.md) |
@@ -24,7 +24,7 @@ Concept documentation lives **next to the code** — one README per folder. **CL
 |-------|--------|-----|
 | Bronze | `bronze` | `dbt run --select bronze` |
 | Silver | `silver` | `dbt run --select +silver` |
-| Gold | `gold` | *planned* |
+| Gold | `gold` | `dbt run --select +gold` |
 
 ---
 
@@ -57,7 +57,7 @@ dbt_learning/
 ├── models/
 │   ├── bronze/     # staging — README in folder
 │   ├── silver/     # cleansed views
-│   ├── gold/       # (planned)
+│   ├── gold/       # KPI aggregates — README in folder
 │   └── source/     # source.yml
 ├── tests/          # singular & project-specific tests
 ├── macros/         # shared Jinja macros

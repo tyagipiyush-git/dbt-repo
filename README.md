@@ -14,7 +14,7 @@ dbt_tutorial/
 │   ├── models/
 │   │   ├── bronze/        # staging — see models/bronze/README.md
 │   │   ├── silver/        # cleansed — see models/silver/README.md
-│   │   ├── gold/          # (planned) business aggregates
+│   │   ├── gold/          # business KPIs — see models/gold/README.md
 │   │   └── source/        # source definitions (source.yml)
 │   ├── macros/
 │   ├── tests/
@@ -62,6 +62,7 @@ dbt debug
 dbt seed                        # optional: lookup_test seed
 dbt run --select bronze         # build bronze tables first
 dbt run --select silver         # or: dbt run --select +silver
+dbt run --select +gold          # KPI aggregates (needs silver)
 dbt test
 ```
 
@@ -80,7 +81,7 @@ flowchart LR
     SRC["source schema\n(fact_*, dim_*)"]
     BRZ["bronze schema\ntables"]
     SLV["silver schema\nviews"]
-    GLD["gold schema\n(planned)"]
+    GLD["gold schema\nKPI tables"]
     SRC --> BRZ --> SLV --> GLD
 ```
 
@@ -89,7 +90,7 @@ flowchart LR
 | Sources | `source` | External tables | [source.yml](dbt_learning/models/source/source.yml) |
 | Bronze | `bronze` | Tables | [models/bronze/README.md](dbt_learning/models/bronze/README.md) |
 | Silver | `silver` | Views | [models/silver/README.md](dbt_learning/models/silver/README.md) |
-| Gold | `gold` | Views (configured) | *coming soon* |
+| Gold | `gold` | Tables | [models/gold/README.md](dbt_learning/models/gold/README.md) |
 
 ---
 
@@ -100,6 +101,7 @@ flowchart LR
 | Project overview | [dbt_learning/README.md](dbt_learning/README.md) |
 | Bronze layer | [dbt_learning/models/bronze/README.md](dbt_learning/models/bronze/README.md) |
 | Silver layer | [dbt_learning/models/silver/README.md](dbt_learning/models/silver/README.md) |
+| Gold layer | [dbt_learning/models/gold/README.md](dbt_learning/models/gold/README.md) |
 | Macros & helper compile workflow | [dbt_learning/macros/README.md](dbt_learning/macros/README.md) |
 | Analyses & Jinja | [dbt_learning/analyses/README.md](dbt_learning/analyses/README.md) · [README-jinja.md](dbt_learning/analyses/README-jinja.md) |
 | Tests | [dbt_learning/tests/README.md](dbt_learning/tests/README.md) |
@@ -116,6 +118,7 @@ cd dbt_learning
 dbt run --select bronze                    # all bronze models
 dbt run --select silver                    # silver only (needs bronze built)
 dbt run --select +silver                   # silver + missing parents (e.g. bronze_returns)
+dbt run --select +gold                     # gold KPIs + silver/bronze parents
 dbt run --select bronze_returns silver_returns
 
 dbt compile --select path:analyses/test_sales_data.sql
