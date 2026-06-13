@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: gold_sales_daily
+    description: Daily sales KPIs aggregated by store and calendar date.
+    columns:
+      - name: store_sk
+        data_tests:
+          - not_null
+      - name: calendar_date
+        data_tests:
+          - not_null
+      - name: net_revenue
+        data_tests:
+          - generic_non_negative
+
+  - name: gold_store_performance
+    description: Store-level sales, returns, and net revenue metrics.
+    columns:
+      - name: store_sk
+        data_tests:
+          - not_null
+          - unique
+      - name: gross_revenue
+        data_tests:
+          - generic_non_negative
+
+  - name: gold_customer_overview
+    description: Customer purchase history and lifetime value metrics.
+    columns:
+      - name: customer_sk
+        data_tests:
+          - not_null
+          - unique
+
+  - name: gold_product_performance
+    description: Product and category sales with return metrics.
+    columns:
+      - name: product_sk
+        data_tests:
+          - not_null
+          - unique

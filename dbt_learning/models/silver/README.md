@@ -1,6 +1,6 @@
 # Silver layer
 
-The **silver** layer cleanses and enriches bronze data into schema **`silver`** as **views**. See [bronze](../bronze/README.md) for upstream staging and the [project README](../../README.md) for the full repo.
+The **silver** layer cleanses and enriches bronze data into schema **`silver`** as **tables**. See [bronze](../bronze/README.md) for upstream staging and the [project README](../../README.md) for the full repo.
 
 ---
 
@@ -22,7 +22,7 @@ From `dbt_project.yml`:
 
 ```yaml
 silver:
-  +materialized: view
+  +materialized: table
   schema: silver
 ```
 
@@ -127,14 +127,15 @@ flowchart TB
 | Item | Why |
 |------|-----|
 | `models/silver/properties.yml` | `relationships` tests to dims |
-| `silver_sales_detail` | One joined table for BI |
-| **Gold** layer | Aggregates: revenue by store/month, returns by reason |
+| `silver_sales_detail` | One joined wide table for BI |
+| [Gold layer](../gold/README.md) | KPI aggregates built from these silver models |
 
 ---
 
 ## Further reading
 
 - [Bronze layer](../bronze/README.md)
+- [Gold layer](../gold/README.md)
 - [Macros — compile helper via analyses](../../macros/README.md)
 - [Analyses](../../analyses/README.md)
 - [Commands](../../commands/README.md)
